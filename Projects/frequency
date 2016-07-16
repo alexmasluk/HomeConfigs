@@ -1,0 +1,15 @@
+#!/usr/bin/python3
+import sys
+import operator
+if len(sys.argv) == 2:
+	ctxt = sys.argv[1]
+	frequencies = {}
+	for letter in sys.argv[1]:
+		letter = letter.lower()
+		if letter in frequencies:
+			frequencies[letter] += 1
+		else:
+			frequencies[letter] = 1
+	frequencies = sorted(frequencies.items(), key=operator.itemgetter(1), reverse=True)	
+	for letter in frequencies:
+		print('{}: {}'.format(letter[0], letter[1]))

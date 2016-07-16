@@ -1,0 +1,40 @@
+#!/usr/bin/python3
+
+import sys
+import string
+
+alphabet = string.ascii_lowercase
+
+
+def rot( n, c ):
+	if (int(n) >= 0):
+		return alphabet[(alphabet.find(c) + int(n)) % 26 ]
+	else:
+		newval = ord(c) - ord('a') + int(n)
+		if (newval < 0):
+			newval += 26
+		return alphabet[newval]
+
+if len(sys.argv) == 3:
+	ctxt = ""
+	rot_val = sys.argv[1]
+	ptxt = sys.argv[2]	
+	for letter in ptxt:
+		letter = letter.lower()
+		if letter in alphabet:
+			ctxt += rot( rot_val,letter )
+		else:
+			ctxt += letter
+	print(ctxt)
+
+if len(sys.argv) == 2:
+	ctxt = sys.argv[1]
+	for rot_val in range(1,26):
+		ptxt = ""
+		for letter in ctxt:
+			letter = letter.lower()
+			if letter in alphabet:
+				ptxt += rot( -1 * int(rot_val), letter )	
+			else:
+				ptxt += letter
+		print(ptxt)
